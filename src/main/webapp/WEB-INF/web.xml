@@ -10,6 +10,29 @@
 		<param-name>primefaces.THEME</param-name>
 		<param-value>aristo</param-value>
 	</context-param>
+	
+	<!-- configuration param, value is auto|native|commons -->
+	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>commons</param-value>
+	</context-param>
+	
+	<!-- decided to choose commons fileupload, it requires the following filter configration in your web deployment descriptior. -->
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>
+			org.primefaces.webapp.filter.FileUploadFilter
+		</filter-class>
+		<!-- the temporary path, if did't set this folder when inputstream close and temp file will delete -->
+		<!-- <init-param> 
+			<param-name>uploadDirectory</param-name>
+			<param-value>D:/upload</param-value>
+		</init-param> -->
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -21,7 +44,6 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.faces</url-pattern>
 	</servlet-mapping>
-
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
